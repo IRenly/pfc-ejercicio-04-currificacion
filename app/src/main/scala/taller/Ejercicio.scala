@@ -6,7 +6,14 @@ class Ejercicio() {
   // anterior aplicando g. Cada término se eleva a la p y se combina con f.
   // Tal como está devuelve siempre 0 y las pruebas quedan en rojo.
   def opCurrified(n: Int)(p: Int)(f: (Int, Int) => Int)(g: Int => Int): Int = {
-    0 // Completar
+    def potencia(base: Int, exp: Int): Int =
+      if (exp <= 0) 1
+      else base * potencia(base, exp - 1)
+    def acc(a: Int, b: Int): Int = {
+      if (b <= 1) potencia(a, p)
+      else f(potencia(a, p), acc(g(a), b - 1))
+    }
+    acc(1, n)
   }
 
   // Punto 2. La suma de la sesión con tres grupos de parámetros.
@@ -16,7 +23,7 @@ class Ejercicio() {
 
   // suma4 con f y prox ya fijados: cuadrados de uno en uno.
   def sumaCuadradosSuc: (Int, Int) => Int = {
-    (a, b) => 0 // Completar con una aplicación parcial de suma4
+    (a, b) => a+b  // Completar con una aplicación parcial de suma4
   }
 
   // Punto 3. La operación y su valor inicial en los dos primeros grupos.
