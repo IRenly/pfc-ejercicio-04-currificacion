@@ -47,14 +47,15 @@ class Ejercicio() {
 
   // Punto 4. Funciones que devuelven funciones.
   def componer(f: Int => Int)(g: Int => Int): Int => Int = {
-    (x: Int) => 0 // Completar
+    x => f(g(x))
   }
 
   def aplicarN(f: Int => Int)(n: Int): Int => Int = {
-    (x: Int) => 0 // Completar
+    if (n <= 0) (x: Int) => x
+    else componer(f)(aplicarN(f)(n - 1))
   }
 
   def sumador(n: Int): Int => Int = {
-    (x: Int) => 0 // Completar
+    x => x + n
   }
 }
