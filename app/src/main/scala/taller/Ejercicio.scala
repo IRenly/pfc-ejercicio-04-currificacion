@@ -32,16 +32,17 @@ class Ejercicio() {
   def reducirC(op: (Int, Int) => Int)(inicio: Int)
               (f: Int => Int, prox: Int => Int)
               (a: Int, b: Int): Int = {
-    0 // Completar
+    if (a > b ) inicio
+    else op(f(a) ,reducirC(op)(inicio)(f, prox)(prox(a), b))
   }
 
   // producto y factorialHOF se escriben con reducirC y nada más.
   def producto(f: Int => Int, prox: Int => Int, a: Int, b: Int): Int = {
-    0 // Completar
+    reducirC((x, y) => x * y)(1)(f, prox)(a, b)
   }
 
   def factorialHOF(n: Int): Int = {
-    0 // Completar
+    producto(x => x, x => x + 1, 1, n)
   }
 
   // Punto 4. Funciones que devuelven funciones.
